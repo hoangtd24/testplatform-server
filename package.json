@@ -8,7 +8,9 @@
     "server": "nodemon public/dist/index.js",
     "start": "node puclic/dist/index.js",
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npm run typeorm migration:generate -- -d src/index.ts"
   },
   "author": "",
   "license": "ISC",

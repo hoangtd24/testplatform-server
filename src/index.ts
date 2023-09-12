@@ -33,6 +33,7 @@ export const AppDataSource = new DataSource({
   entities: [Question, Result, Exam, User],
   synchronize: true,
   logging: true,
+  ssl: true,
 });
 const main = async () => {
   AppDataSource.initialize()
