@@ -139,7 +139,7 @@ let UserResolver = exports.UserResolver = class UserResolver {
             user: existingUser,
         };
     }
-    async logout(userId, { res }) {
+    async logout({ res }) {
         res.clearCookie(process.env.REFRESH_TOKEN_NAME, {
             httpOnly: true,
             secure: true,
@@ -285,10 +285,9 @@ __decorate([
 ], UserResolver.prototype, "updateProfile", null);
 __decorate([
     (0, type_graphql_1.Mutation)((_return) => UserMutationResponse_1.UserMutationResponse),
-    __param(0, (0, type_graphql_1.Arg)("userId")),
-    __param(1, (0, type_graphql_1.Ctx)()),
+    __param(0, (0, type_graphql_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "logout", null);
 __decorate([

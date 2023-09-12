@@ -26,11 +26,11 @@ const User_2 = require("./entities/User");
 require("dotenv").config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    host: "localhost",
+    host: process.env.POSTGRES_HOST,
     port: 5432,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: "testplatform",
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
     entities: [Question_1.Question, Result_1.Result, Exam_1.Exam, User_2.User],
     synchronize: true,
     logging: true,
