@@ -16,13 +16,13 @@ const typeorm_1 = require("typeorm");
 const Exam_1 = require("./entities/Exam");
 const Question_1 = require("./entities/Question");
 const Result_1 = require("./entities/Result");
-const User_1 = require("./entities/User");
 const Exam_2 = require("./resolvers/Exam");
 const Gretting_1 = require("./resolvers/Gretting");
 const Question_2 = require("./resolvers/Question");
 const Result_2 = require("./resolvers/Result");
-const User_2 = require("./resolvers/User");
+const User_1 = require("./resolvers/User");
 const refreshToken_1 = __importDefault(require("./routes/refreshToken"));
+const User_2 = require("./entities/User");
 require("dotenv").config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
@@ -31,7 +31,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: "testplatform",
-    entities: [User_1.User, Question_1.Question, Exam_1.Exam, Result_1.Result],
+    entities: [Question_1.Question, Result_1.Result, Exam_1.Exam, User_2.User],
     synchronize: true,
     logging: true,
 });
@@ -55,7 +55,7 @@ const main = async () => {
         schema: await (0, type_graphql_1.buildSchema)({
             resolvers: [
                 Gretting_1.Greeting,
-                User_2.UserResolver,
+                User_1.UserResolver,
                 Question_2.QuestionResolver,
                 Exam_2.ExamResolver,
                 Result_2.ResultResolver,

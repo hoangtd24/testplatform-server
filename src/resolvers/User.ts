@@ -7,7 +7,6 @@ import {
   Resolver,
   UseMiddleware,
 } from "type-graphql";
-import { User } from "../entities/User";
 import { checkAuth } from "../middlewares/checkAuth";
 import { Context } from "../types/Context";
 import { loginInput } from "../types/LoginInput";
@@ -20,6 +19,7 @@ import { TokenModel } from "../models/UserToken";
 import { v4 as uuidv4 } from "uuid";
 import { sendMail } from "../utils/sendMail";
 import { resetPasswordInput } from "../types/ResetPasswordInput";
+import { User } from "../entities/User";
 
 @Resolver((_of) => User)
 export class UserResolver {

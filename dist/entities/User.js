@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "address", void 0);
 exports.User = User = __decorate([
-    (0, type_graphql_1.ObjectType)(),
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    (0, type_graphql_1.ObjectType)()
 ], User);
 //# sourceMappingURL=User.js.map

@@ -38,7 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
 const argon2_1 = __importStar(require("argon2"));
 const type_graphql_1 = require("type-graphql");
-const User_1 = require("../entities/User");
 const checkAuth_1 = require("../middlewares/checkAuth");
 const LoginInput_1 = require("../types/LoginInput");
 const PasswordInput_1 = require("../types/PasswordInput");
@@ -50,6 +49,7 @@ const UserToken_1 = require("../models/UserToken");
 const uuid_1 = require("uuid");
 const sendMail_1 = require("../utils/sendMail");
 const ResetPasswordInput_1 = require("../types/ResetPasswordInput");
+const User_1 = require("../entities/User");
 let UserResolver = exports.UserResolver = class UserResolver {
     async register({ email, username, password, birthday, address, phone }) {
         const existingUser = await User_1.User.findOneBy({ email });

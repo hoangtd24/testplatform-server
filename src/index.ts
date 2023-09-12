@@ -14,13 +14,13 @@ import { DataSource } from "typeorm";
 import { Exam } from "./entities/Exam";
 import { Question } from "./entities/Question";
 import { Result } from "./entities/Result";
-import { User } from "./entities/User";
 import { ExamResolver } from "./resolvers/Exam";
 import { Greeting } from "./resolvers/Gretting";
 import { QuestionResolver } from "./resolvers/Question";
 import { ResultResolver } from "./resolvers/Result";
 import { UserResolver } from "./resolvers/User";
 import refreshToken from "./routes/refreshToken";
+import { User } from "./entities/User";
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({
@@ -30,7 +30,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: "testplatform",
-  entities: [User, Question, Exam, Result],
+  entities: [Question, Result, Exam, User],
   synchronize: true,
   logging: true,
 });
