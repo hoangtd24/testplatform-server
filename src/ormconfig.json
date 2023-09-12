@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "dpg-cjuv5il175es73bu2gmg-a",
+  "port": 5432,
+  "username": "testplatform_lnxj_user",
+  "password": "18gjCKGWqAqgv39FIa2AMZaNAa7uQIuY",
+  "database": "testplatform",
+  "entities": ["dist/entities/*.ts"],
+  "logging": true
+}
