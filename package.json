@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon public/index.js",
-    "start": "node puclic/index.js",
+    "start": "node public/index.js",
     "build": "tsc",
     "watch": "tsc -w",
     "typeorm": "typeorm-ts-node-commonjs",
