@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon public/dist/index.js",
-    "start": "node puclic/dist/index.js",
+    "server": "nodemon public/index.js",
+    "start": "node puclic/index.js",
     "build": "tsc",
     "watch": "tsc -w",
     "typeorm": "typeorm-ts-node-commonjs",
