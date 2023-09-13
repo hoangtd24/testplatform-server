@@ -51,7 +51,11 @@ export const AppDataSource = new DataSource({
 });
 const main = async () => {
   if (__prod__) {
-    await AppDataSource.runMigrations();
+    try {
+      await AppDataSource.runMigrations();
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   AppDataSource.initialize()
     .then(() => {
@@ -101,8 +105,8 @@ const main = async () => {
     app,
     cors: {
       origin: __prod__
-      ? process.env.CORS_ORIGIN_PROD
-      : process.env.CORS_ORIGIN_DEV,
+        ? process.env.CORS_ORIGIN_PROD
+        : process.env.CORS_ORIGIN_DEV,
       credentials: true,
       allowedHeaders: ["Content-Type", "Authorization"],
     },

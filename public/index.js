@@ -44,7 +44,12 @@ exports.AppDataSource = new typeorm_1.DataSource(Object.assign(Object.assign(Obj
     : {})), (constants_1.__prod__ ? {} : { synchronize: true })), { entities: [Question_1.Question, Result_1.Result, Exam_1.Exam, User_2.User], migrations: [path_1.default.join(__dirname, "/migrations/*")] }));
 const main = async () => {
     if (constants_1.__prod__) {
-        await exports.AppDataSource.runMigrations();
+        try {
+            await exports.AppDataSource.runMigrations();
+        }
+        catch (error) {
+            console.log(error.message);
+        }
     }
     exports.AppDataSource.initialize()
         .then(() => {
