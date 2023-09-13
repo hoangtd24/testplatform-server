@@ -47,7 +47,7 @@ export const AppDataSource = new DataSource({
     : {}),
   ...(__prod__ ? {} : { synchronize: true }),
   entities: [Question, Result, Exam, User],
-  migrations: [path.join(__dirname, "/migrations/*")],
+  migrations: [path.join(__dirname, "./migrations/*")],
 });
 const main = async () => {
   if (__prod__) {
