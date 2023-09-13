@@ -50,7 +50,7 @@ export const AppDataSource = new DataSource({
   migrations: [path.join(__dirname, "./migrations/*")],
 });
 const main = async () => {
-  AppDataSource.initialize()
+  await AppDataSource.initialize()
     .then(() => {
       console.log("Data Source has been initialized!");
     })

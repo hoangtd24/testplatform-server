@@ -43,7 +43,7 @@ exports.AppDataSource = new typeorm_1.DataSource(Object.assign(Object.assign(Obj
     }
     : {})), (constants_1.__prod__ ? {} : { synchronize: true })), { entities: [Question_1.Question, Result_1.Result, Exam_1.Exam, User_2.User], migrations: [path_1.default.join(__dirname, "./migrations/*")] }));
 const main = async () => {
-    exports.AppDataSource.initialize()
+    await exports.AppDataSource.initialize()
         .then(() => {
         console.log("Data Source has been initialized!");
     })
