@@ -50,13 +50,6 @@ export const AppDataSource = new DataSource({
   migrations: [path.join(__dirname, "./migrations/*")],
 });
 const main = async () => {
-  if (__prod__) {
-    try {
-      await AppDataSource.runMigrations();
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
   AppDataSource.initialize()
     .then(() => {
       console.log("Data Source has been initialized!");
@@ -64,6 +57,13 @@ const main = async () => {
     .catch((err) => {
       console.error("Error during Data Source initialization", err);
     });
+  if (__prod__) {
+    try {
+      await AppDataSource.runMigrations();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const app = express();
   app.use(
