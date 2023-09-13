@@ -21,21 +21,38 @@ import { ResultResolver } from "./resolvers/Result";
 import { UserResolver } from "./resolvers/User";
 import refreshToken from "./routes/refreshToken";
 import { User } from "./entities/User";
+import { __prod__ } from "./constants";
+import path from "path";
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: process.env.POSTGRES_HOST,
-  port: 5432,
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DATABASE,
-  entities: [Question, Result, Exam, User],
-  synchronize: true,
+  ...(__prod__
+    ? { url: process.env.POSTGRES_URL }
+    : {
+        database: process.env.POSTGRES_DATABASE,
+        username: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+      }),
   logging: true,
-  ssl: true,
+  ...(__prod__
+    ? {
+        extra: {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        },
+        ssl: true,
+      }
+    : {}),
+  ...(__prod__ ? {} : { synchronize: true }),
+  entities: [Question, Result, Exam, User],
+  migrations: [path.join(__dirname, "/migrations/*")],
 });
 const main = async () => {
+  if (__prod__) {
+    await AppDataSource.runMigrations();
+  }
   AppDataSource.initialize()
     .then(() => {
       console.log("Data Source has been initialized!");
@@ -47,7 +64,9 @@ const main = async () => {
   const app = express();
   app.use(
     cors({
-      origin: ["http://localhost:3000"],
+      origin: __prod__
+        ? process.env.CORS_ORIGIN_PROD
+        : process.env.CORS_ORIGIN_DEV,
       credentials: true,
     })
   );
@@ -81,7 +100,9 @@ const main = async () => {
   apolloServer.applyMiddleware({
     app,
     cors: {
-      origin: ["http://localhost:3000"],
+      origin: __prod__
+      ? process.env.CORS_ORIGIN_PROD
+      : process.env.CORS_ORIGIN_DEV,
       credentials: true,
       allowedHeaders: ["Content-Type", "Authorization"],
     },
