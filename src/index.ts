@@ -8,6 +8,7 @@ import cors from "cors";
 import express from "express";
 import http from "http";
 // import mongoose from "mongoose";
+require("dotenv").config();
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { DataSource } from "typeorm";
@@ -23,7 +24,6 @@ import refreshToken from "./routes/refreshToken";
 import { User } from "./entities/User";
 import { __prod__ } from "./constants";
 import path from "path";
-require("dotenv").config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",

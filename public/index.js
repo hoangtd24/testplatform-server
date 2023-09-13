@@ -10,6 +10,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
+require("dotenv").config();
 require("reflect-metadata");
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
@@ -25,7 +26,6 @@ const refreshToken_1 = __importDefault(require("./routes/refreshToken"));
 const User_2 = require("./entities/User");
 const constants_1 = require("./constants");
 const path_1 = __importDefault(require("path"));
-require("dotenv").config();
 exports.AppDataSource = new typeorm_1.DataSource(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ type: "postgres" }, (constants_1.__prod__
     ? { url: process.env.POSTGRES_URL }
     : {
